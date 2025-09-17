@@ -285,6 +285,27 @@ hr.rounded { border: 0; height: 10px; background: linear-gradient(90deg, #bbb, #
           answers[`${name}_answer`] = chosen.value;
           answers[`${name}_correct`] = isCorrect ? 'TRUE' : 'FALSE';
         }
+        } else if (type === "checkbox") {
+        const selected = Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(cb => cb.value);
+        studentAnswer = selected.join(",");
+        const correctAnswers = (correct || "").split(",");
+        const isCorrect = selected.length === correctAnswers.length && correctAnswers.every(ans => selected.includes(ans));
+        if (isCorrect) {
+          score++;
+          q.classList.add("correct");
+          answers[`${name}_answer`] = chosen.value;
+          answers[`${name}_correct`] = isCorrect ? 'TRUE' : 'FALSE';
+        } else {
+          q.classList.add("incorrect");
+        }
+      } else {
+        const textarea = q.querySelector("textarea");
+        if (textarea) {
+          studentAnswer = textarea.value.trim();
+          openResponses.push({ question: q.querySelector("p").innerText, answer: studentAnswer });
+          q.classList.add("correct"); // recorded
+        }
+      }
       } else if (type === 'open') {
         const control = q.querySelector('textarea, input[type="text"]');
         const val = (control?.value || '').trim();
@@ -292,8 +313,9 @@ hr.rounded { border: 0; height: 10px; background: linear-gradient(90deg, #bbb, #
           q.classList.add('unanswered');
           if (!firstUnanswered) firstUnanswered = q;
         }
-        answers[name] = val;
+                answers[name] = val;
       }
+      
     });
 
     if (firstUnanswered) {
