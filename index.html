@@ -37,33 +37,7 @@
       background: #000; color: #fff; font-weight: 700; font-size: .95rem;
       border-radius: 50%; width: 28px; height: 28px; margin-right: 8px;
     }
-    
-.q2a-select {
-  font-size: 24px;
-  font-family: Verdana, sans-serif;
-  padding: 6px 10px;
-  margin: 4px 0;
-  width: 100%;
-  max-width: 1200px;
-  box-sizing: border-box;
-  background-color: #F0F8FF
-}
-
-.q2a-mark {
-  font-size: 24px;
-  font-weight: bold;
-  margin-left: 6px;
-  vertical-align: middle;
-}
-
-.q2a-correct {
-  color: green;
-}
-
-.q2a-wrong {
-  color: red;
-}
-
+ 
 .float-image {
   float: left;
   width: 260px;
@@ -262,180 +236,160 @@ hr.rounded { border: 0; height: 10px; background: linear-gradient(90deg, #bbb, #
 
 <script>
 (() => {
-  const form = document.getElementById("quizForm");
-  const submitBtn = document.getElementById("submitBtn");
-  let isSubmitting = false;
+  const form = document.getElementById('quizForm');
+  const resultDiv = document.getElementById('result');
+  const submitBtn = document.getElementById('submitBtn');
+  let alreadySubmitted = false;
 
-  form.addEventListener("submit", async function(e) {
-    e.preventDefault();
-    if (isSubmitting) return; // prevent double-clicks
+  // Utilities
+  function scrollToEl(el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 
-    // Validate name & teacher first
-    const studentNameEl = document.getElementById("studentName");
-    const teacherNameEl = document.getElementById("teacherName");
-    studentNameEl.classList.remove("unanswered");
-    teacherNameEl.classList.remove("unanswered");
-
-    if (!studentNameEl.value.trim()) {
-      alert("⚠️ Please enter your name.");
-      studentNameEl.classList.add("unanswered");
-      studentNameEl.scrollIntoView({ behavior: "smooth", block: "center" });
-      studentNameEl.focus();
-      return;
-    }
-    if (!teacherNameEl.value) {
-      alert("⚠️ Please select your teacher.");
-      teacherNameEl.classList.add("unanswered");
-      teacherNameEl.scrollIntoView({ behavior: "smooth", block: "center" });
-      teacherNameEl.focus();
-      return;
-    }
-
-    // Clear old highlights
-    document.querySelectorAll(".question").forEach(q => {
-      q.classList.remove("unanswered", "correct", "incorrect");
-    });
-
-    // Pass 1: Validation only
+  // Returns { score, totalAuto, percent, answers }
+  function gradeAndCollect() {
     let score = 0;
-    let total = 0;
-    let openResponses = [];
-    let allAnswered = true;
+    let totalAuto = 0;
+    const answers = {};
+
+    document.querySelectorAll('.question')
+      .forEach(q => q.classList.remove('unanswered','correct','incorrect'));
+
+    const studentNameEl = document.getElementById('studentName');
+    const teacherNameEl = document.getElementById('teacherName');
+    if (!studentNameEl.value.trim() || !teacherNameEl.value) {
+      alert('Please enter your name and select your teacher.');
+      if (!studentNameEl.value.trim()) studentNameEl.focus(); else teacherNameEl.focus();
+      return null;
+    }
+
     let firstUnanswered = null;
 
-    document.querySelectorAll(".question").forEach(q => {
-      const type = q.dataset.type;
-      const name = q.dataset.name;
+    document.querySelectorAll('.question').forEach(q => {
+      const type = q.dataset.type;       // 'radio' | 'open'
+      const name = q.dataset.name;       // e.g., 'q1a'
+      const correct = q.dataset.answer;  // for radios
 
-      if (type === "radio") {
-        total++;
-        const chosen = document.querySelector(`input[name="${name}"]:checked`);
+      if (type === 'radio') {
+        totalAuto++;
+        const chosen = q.querySelector('input[type="radio"]:checked');
         if (!chosen) {
-          allAnswered = false;
-          q.classList.add("unanswered");
+          q.classList.add('unanswered');
+          if (!firstUnanswered) firstUnanswered = q;
+          answers[`${name}_answer`] = '';
+          answers[`${name}_correct`] = 'FALSE';
+        } else {
+          const isCorrect = (chosen.value === correct);
+          q.classList.add(isCorrect ? 'correct' : 'incorrect');
+          if (isCorrect) score++;
+          answers[`${name}_answer`] = chosen.value;
+          answers[`${name}_correct`] = isCorrect ? 'TRUE' : 'FALSE';
+        }
+      } else if (type === 'open') {
+        const control = q.querySelector('textarea, input[type="text"]');
+        const val = (control?.value || '').trim();
+        if (!val) {
+          q.classList.add('unanswered');
           if (!firstUnanswered) firstUnanswered = q;
         }
-      } else if (type === "checkbox") {
-        total++;
-        const selected = Array.from(document.querySelectorAll(`input[name="${name}"]:checked`));
-        if (selected.length !== 2) {
-          allAnswered = false;
-          q.classList.add("unanswered");
-          if (!firstUnanswered) firstUnanswered = q;
-        }
-      } else {
-        const textarea = q.querySelector("textarea");
-        if (textarea && textarea.value.trim() === "") {
-          allAnswered = false;
-          q.classList.add("unanswered");
-          if (!firstUnanswered) firstUnanswered = q;
-        }
+        answers[name] = val;
       }
     });
 
-    if (!allAnswered) {
-      alert("⚠️ Please answer all questions. (Checkbox questions must have exactly TWO choices.)");
-      if (firstUnanswered) {
-        firstUnanswered.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-      return;
+    if (firstUnanswered) {
+      scrollToEl(firstUnanswered);
+      alert('Please answer all questions (including open responses).');
+      return null;
     }
 
-    // Pass 2: Grade & collect
-    let detailedAnswers = {};
-    document.querySelectorAll(".question").forEach(q => {
-      const type = q.dataset.type;
-      const correct = q.dataset.answer;
-      const name = q.dataset.name;
-      let studentAnswer = "";
+    const percent = totalAuto > 0 ? Math.round((score / totalAuto) * 100) : 0;
+    return { score, totalAuto, percent, answers };
+  }
 
-      if (type === "radio") {
-        const chosen = document.querySelector(`input[name="${name}"]:checked`);
-        studentAnswer = chosen.value;
-        if (chosen.value === correct) {
-          score++;
-          q.classList.add("correct");
-        } else {
-          q.classList.add("incorrect");
-        }
-      } else if (type === "checkbox") {
-        const selected = Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(cb => cb.value);
-        studentAnswer = selected.join(",");
-        const correctAnswers = (correct || "").split(",");
-        const isCorrect = selected.length === correctAnswers.length && correctAnswers.every(ans => selected.includes(ans));
-        if (isCorrect) {
-          score++;
-          q.classList.add("correct");
-        } else {
-          q.classList.add("incorrect");
-        }
-      } else {
-        const textarea = q.querySelector("textarea");
-        if (textarea) {
-          studentAnswer = textarea.value.trim();
-          openResponses.push({ question: q.querySelector("p").innerText, answer: studentAnswer });
-          q.classList.add("correct"); // recorded
-        }
-      }
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (alreadySubmitted) return;
 
-      detailedAnswers[name] = studentAnswer;
-    });
+    const results = gradeAndCollect();
+    if (!results) return;
 
-    const percent = Math.round((score / total) * 100);
-    const studentName = studentNameEl.value.trim();
-    const teacherName = teacherNameEl.value;
+    alreadySubmitted = true;
+    submitBtn.disabled = true;
 
-    // Display report
-    let openHTML = "";
-    if (openResponses.length > 0) {
-      openHTML = "<h3>Open-Ended Responses</h3><ul>";
-      openResponses.forEach(r => {
-        openHTML += `<li><strong>${r.question}</strong><br>Response: ${r.answer}</li>`;
-      });
-      openHTML += "</ul>";
-    }
+    const studentName = document.getElementById('studentName').value.trim();
+    const teacherName = document.getElementById('teacherName').value;
 
-    document.getElementById("result").innerHTML = `
-      <h3>Student Report Card</h3>
-      <p><strong>Student:</strong> ${studentName}</p>
-      <p><strong>Teacher:</strong> ${teacherName}</p>
-      <p><strong>Score:</strong> ${score} out of ${total} correct (${percent}%).</p>
-      <p><em>Note:</em> Only multiple-choice and checkbox questions are auto-graded.</p>
-      ${openHTML}
+    // Render result card
+    resultDiv.innerHTML = `
+      <div class="result-card">
+        <h3>Student Report</h3>
+        <p><strong>Student:</strong> ${studentName} &nbsp; | &nbsp; <strong>Teacher:</strong> ${teacherName}</p>
+        <p><strong>Auto-graded Score:</strong> ${results.score} / ${results.totalAuto} &nbsp; (<strong>${results.percent}%</strong>)</p>
+        <details>
+          <summary><strong>Open Responses</strong> (for teacher review)</summary>
+          <ul>
+            <li><strong>1b:</strong> ${results.answers['q1b'] || '<em>—</em>'}</li>
+            <li><strong>2b:</strong> ${results.answers['q2b'] || '<em>—</em>'}</li>
+          </ul>
+        </details>
+        <p style="color:${results.percent>=70?'#256f2a':'#8a1a1a'}"><em>${results.percent>=70?'Proficient or better on auto-graded items':'Needs support on auto-graded items'}</em></p>
+      </div>
     `;
 
-    // Prepare payload for Google Sheets
-    const payload = { studentName, teacherName, score, percent, ...detailedAnswers };
-    const formBody = Object.keys(payload)
-      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(payload[key]))
-      .join("&");
+    // ---------- SEND TO GOOGLE APPS SCRIPT (form-encoded) ----------
+    const payload = {
+      Timestamp: new Date().toISOString(),
+      studentName,
+      teacherName,
+      score: results.score,
+      percent: results.percent,
 
-    // Lock UI & send
-    isSubmitting = true;
+      // MC answers + correctness
+      q1a_answer: results.answers['q1a_answer'] || '',
+      q1a_correct: results.answers['q1a_correct'] || '',
+      q1b_answer: results.answers['q1b_answer'] || '',
+      q1b_correct: results.answers['q1b_correct'] || '',
+      q2a_answer:  results.answers['q2a_answer']  || '',
+      q2a_correct: results.answers['q2a_correct'] || '',
+      q2b_answer: results.answers['q2b_answer'] || '',
+      q2b_correct: results.answers['q2b_correct'] || '',
+      q3a_answer:  results.answers['q3a_answer']  || '',
+      q3a_correct: results.answers['q3a_correct'] || '',
+      q3b_answer: results.answers['q3b_answer'] || '',
+      q3b_correct: results.answers['q3b_correct'] || '',
+
+      // Open responses
+      q4: results.answers['q4'] || ''
+      };
+
+    const formBody = Object.keys(payload)
+      .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(payload[k]))
+      .join('&');
+
     const originalBtnText = submitBtn.textContent;
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Submitting...";
+    submitBtn.textContent = 'Submitting…';
 
     try {
-      const res = await fetch("https://script.google.com/macros/s/AKfycbzcj8Fz9N62AoeN1YvX-wIPsiTsde3UFFk2TZjo2_6GKzKNB_zJ9reW5THI2wAfkndH/exec", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formBody
-      });
-      const data = await res.text();
-      console.log("Server response:", data);
-      submitBtn.textContent = "Submitted ✓"; // keep disabled to prevent resubmission
-      alert("Quiz submitted successfully!");
+      const res = await fetch(
+        "https://script.google.com/macros/s/AKfycby6Pcm1dbDSeCjub2RKzDJrqXvifsnJYqED1-gtLV9NH4wBLFGCr8-EPm1G1kvZtHw/exec",
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: formBody
+        }
+      );
+      const text = await res.text();
+      console.log('Server response:', text);
+      submitBtn.textContent = 'Submitted ✓';
     } catch (err) {
-      console.error("Error:", err);
-      alert("There was an error submitting your quiz. Please try again.");
-      isSubmitting = false;
+      console.error(err);
+      alert('There was an error submitting your quiz. Please try again.');
+      alreadySubmitted = false;
       submitBtn.disabled = false;
       submitBtn.textContent = originalBtnText;
     }
   });
 })();
 </script>
-
 </body>
 </html>
