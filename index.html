@@ -1,0 +1,441 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>4 Unit 2 Informational Text Common Assessment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --accent: #4caf50;
+      --danger: #b00020;
+      --ink: #222;
+      --ink-soft: #555;
+      --paper: #fff;
+      --muted: #f3f4f6;
+    }
+    body { font-family: Verdana, sans-serif; line-height: 1.6; margin: 40px; font-size: 24px; color: var(--ink); }
+    h1, h2, h3 { text-align: center; }
+    .container { max-width: 1100px; margin: auto; }
+    .question { margin: 24px 0; padding: 16px; border-radius: 10px; background: var(--muted); }
+    .question p { margin-top: 0; }
+    .correct { background-color: #d4edda; }
+    .incorrect { background-color: #f8d7da; }
+    .feedback { font-weight: bold; margin-top: 8px; }
+
+    input[type="checkbox"], input[type="radio"] { transform: scale(1.6); margin: 6px 10px 6px 2px; }
+
+    button[type="submit"] {
+      width: 340px; height: 70px; padding: 10px 20px;
+      background-color: var(--accent); color: white; font-size: 1.25rem; margin: 30px auto; display: inline-block;
+      border: 0; border-radius: 12px; cursor: pointer; font-weight: 700;
+    }
+    button[disabled] { opacity: .6; cursor: not-allowed; }
+  
+.number-circle {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: #000; color: #fff; font-weight: 700; font-size: .95rem;
+      border-radius: 50%; width: 28px; height: 28px; margin-right: 8px;
+    }
+    
+.q2a-select {
+  font-size: 24px;
+  font-family: Verdana, sans-serif;
+  padding: 6px 10px;
+  margin: 4px 0;
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+  background-color: #F0F8FF
+}
+
+.q2a-mark {
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.q2a-correct {
+  color: green;
+}
+
+.q2a-wrong {
+  color: red;
+}
+
+.float-image {
+  float: left;
+  width: 260px;
+  height: 200px;
+  margin: 0 0 10px 10px; /* this pushes text away */
+  border: none;
+  }
+
+.center { display: block; margin: 0 auto; width: 100%; max-width: 640px; }
+
+.gd-image iframe { pointer-events: none; border: 0; width: 100%; max-width: 640px; height: 475px; }
+.gd-image-2 iframe { pointer-events: none; border: 0; width: 100%; width: 442px; height: 626px; }
+.gd-image-3 iframe { pointer-events: none; border: 0; width: 100%; max-width: 640px; height: 492px; }
+
+.table.style-one { font-family: Verdana, serif; margin: 20px auto; border-collapse: collapse; width: 100%; }
+.table.style-one td { border-bottom: 1px dotted #bbb; padding: 8px 6px; }
+
+.table.style-two { font-family: Verdana, sans-serif; border-collapse: collapse; border: 1px solid black; background-color: #ffffff; width: 100%; }
+.table.style-two td { border: 1px solid #ccc; padding: 10px; }
+
+#teacherName {
+      width: 280px; height: 48px; padding: 8px; border: 1px solid #ccc; border-radius: 8px;
+      font-family: Georgia, serif; font-size: 24px; color: #333; background-color: #fcfc03;
+    }
+
+#studentName { width: 400px; height: 45px; padding: 8px; border: 1px solid #ccc; border-radius: 8px; font-family: Georgia, serif; font-size: 24px; color: #030303; background-color: #fcfc03; }
+
+hr.rounded { border: 0; height: 10px; background: linear-gradient(90deg, #bbb, #eee, #bbb); border-radius: 6px; margin: 28px 0; }
+.unanswered { border: 2px solid var(--danger); background-color: #ffe6e6; padding: 8px; border-radius: 10px; }
+
+.result-card { background: #fff; border: 1px solid #ddd; border-radius: 12px; padding: 16px; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+.result-card h3 { margin-top: 0; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>4 Unit 2 Informational Text Common Assessment</h1>
+
+  <h4 style="font-size: 20px">Standards</h4>
+  <p style="text-align: left; font-size: 16px;"><strong>RI.4.2:</strong> Determine the main idea of a text and explain how it is supported by key details; summarize the text.</p>
+  <p style="text-align: left; font-size: 16px;"><strong>RI.4.4:</strong> Determine the meaning of general academic and domain-specific words or phrases in a text.</p>
+  <p style="text-align: left; font-size: 16px;"><strong>L.4.2:</strong> Demonstrate command of the conventions of standard English capitalization, punctuation, and spelling when writing.</p>
+
+  <h2>Directions</h2>
+  <p>Read the text and answer the questions below.</p>
+
+  <h2>Native American Cultures: The Great Plains</h2>
+  <p style="text-align: center"><strong>By Encyclopaedia Britannica, adapted by Newsela staff on 06.15.17</strong></p>
+
+  <div class="gd-image"><iframe src="https://drive.google.com/file/d/17a_5wqCuZx0tFy7jcDKez7gnFkKcaZv2/preview" class="center" allow="autoplay"></iframe></div>
+
+  <p><span class="number-circle">1</span> Plains Native Americans once lived all across the Great Plains. The Great Plains is a huge grassland  at the center of North America. It stretches all the way from Canada to Texas.</p>
+  <p><strong>Many Nations and Languages</strong></p>
+  
+  <div class="gd-image-2"><iframe src="https://drive.google.com/file/d/1xq7r08Hl8eM9mMD-EiKGKKHf8P7LuoyC/preview" style="float: right;"></iframe></div>
+  
+  <p><span class="number-circle">2</span> The Plains Native Americans were not one nation. There were many different people who spoke different languages. The best known of these people include the Blackfoot, Arapaho, Cheyenne, Comanche, Crow, Kiowa, Lakota and Plains Cree.</p>
+  <p><span class="number-circle">3</span> Some of their languages are similar to languages spoken as far north as Alaska. Others, such as the Comache, spoke languages from the Uto-Aztecan language family. These are some of the oldest languages in the Americas.</p>
+  <p><span class="number-circle">4</span> Plains peoples invented a type of sign language as well. It represented common objects and ideas like "buffalo" or "exchange." This allowed people who spoke different languages to communicate with each other.</p>
+  <p><strong>Horses Change Way of Life</strong></p>
+  <p><span class="number-circle">5</span> Before 1700, most Plains peoples lived in villages. Some of these villages had populations of several thousand people. Most of their food came from farming.</p>
+  <p><span class="number-circle">6</span> However, life changed once horses reached the Great Plains. Horses were brought to North America by the Spanish.</p>
+  <p><span class="number-circle">7</span> Many people gave up farming once they had horses. They turned to hunting instead. They also took on a nomadic, or wandering way of life. They left village life behind and spent most of the year following herds of buffalo.</p>
+  <p><strong>Family Life: Jobs</strong></p>
+  <p><span class="number-circle">8</span> Plains men and women had different jobs. Women gathered plant food, cleaned, cooked and made clothing. Men hunted and made weapons. They also protected the community.</p>
+  <p><strong>Food: Buffalo</strong></p>
+  <p><span class="number-circle">9</span> Hunting Buffalo meat was the main food of the Plains peoples. At first most buffalo hunters used bows and arrows. Later they used guns. They were able to get guns by trading with Europeans. After the hunt, the women skinned the buffalo and cut up the meat. Most of the meat was cut into thin strips and dried. Once it was dried, it lasted for a long time.</p>
+  <p><strong>Dwellings: From Lodges To Tepees</strong></p>
+  
+   <div class="gd-image-3"><iframe src="https://drive.google.com/file/d/1T6enhYYrH4buMFrs33S12s5cbtyLYOBQ/preview" style="float: right;"></iframe></div>
+  
+  <p><span class="number-circle">10</span> Before they had horses, people lived in villages. The villages were along rivers. Some villages had populations of up to a few thousand people. Typical village people planted crops in the spring, spent the summer as nomadic hunters, and returned to their villages in the autumn for the harvest.</p>
+  <p><span class="number-circle">11</span> Dwellings in the villages were mostly dome-shaped earth lodges. These were roofed and walled with earth and entered through a covered passage. Many Plains people gave up permanent villages after they got horses. They became more reliant on hunting bison by horseback. As a result, they adjusted their way of life to match the habits of the animals.</p>
+  <p><span class="number-circle">12</span> Plains people lived in tents called tepees. These were shaped like a cone. Tepees were made by stretching sewn buffalo skins over wooden poles. They could be taken apart quickly and easily. Usually, they were large enough to house an entire family.</p>
+  <p><strong>Clothing: Animal Hides, Beads, Feathers</strong></p>
+  <p><span class="number-circle">13</span> Plains women made clothes out of animal hides. They decorated them with porcupine quills and beads. Men wore a shirt, leggings and moccasins. In cold weather they wore buffalo-skin robes. These were painted with scenes of battles they had fought. Warriors sometimes wore warbonnets, or headdresses made with eagle feathers. Women wore a long dress, leggings and moccasins.</p>
+    <p><strong>Making Tools and Weapons</strong></p>
+  <p><span class="number-circle">14</span> Plains people used different parts of the buffalo to make all kinds of items. Bedding and bags were made from buffalo hides. The horns were carved into spoons. The hooves were cooked to make glue.</p>
+  <p><span class="number-circle">15</span> Bows for hunting were made out of wood. Arrows were first made with a sharp stone head. Later on, they were made with metal points. Feathers were tied to the end of the arrow to make it fly straight.</p>
+  <p><strong>Warfare: Small Raids</strong></p>
+  <p><span class="number-circle">16</span> Warfare was common among Plains nations. Fighting rarely involved large forces, though. Usually it was carried out by small raiding parties. Raids were staged for different reasons. Sometimes one nation wanted to punish another for killing one of its members. Other times the purpose was to steal horses.Warriors did not always kill each other. They were honored more for touching an enemy in battle. Brave warriors won the right to wear eagle feathers. These were worn as part of a headdress.</p>
+  <p><strong>Today: Reconnecting With The Past</strong></p>
+  <p><span class="number-circle">16</span> Over time Plains people lost much of their traditional way of life. Today, many Plains people are trying to reconnect with their past. For example, tribal schools now teach tribal languages. Many of these languages were almost completely forgotten.</p>
+  
+  <div style="background-color: Gainsboro; padding: 1px 12px 16px; border-radius: 10px;">
+  <form id="quizForm">
+    
+  <h2>Questions</h2>
+
+  <!-- onsubmit removed; JS handles submission -->
+      <!-- 1a -->
+    <div class="question" data-answer="c" data-type="radio" data-name="q1a">
+      <p><strong>1. Which sentence <u>best</u> summarizes the passage? (RI.4.2)</strong></p>
+      <label for="q1a_a"><input type="radio" name="q1a" value="a" id="q1a_a"> a) Plains Native Americans raised cattle and farmed on large ranches.</label><br>
+      <label for="q1a_b"><input type="radio" name="q1a" value="b" id="q1a_b"> b) Plains Native Americans kept their traditions by living near rivers.</label><br>
+      <label for="q1a_c"><input type="radio" name="q1a" value="c" id="q1a_c"> c) Plains Native Americans developed ways of life based on their environment and resources.</label><br>
+      <label for="q1a_d"><input type="radio" name="q1a" value="d" id="q1a_d"> d) Plains Native Americans used sign language to trade only with Europeans.</label><br>
+    </div>
+
+     <!-- 1b -->
+    <div class="question" data-answer="a,e" data-type="checkbox" data-name="q1b">
+      <p><strong>1b. Which <u>two</u> statements from the passage best support your answer to part 1a? (RI.4.2)</strong></p>
+      <label for="q1b_a"><input type="checkbox" name="q1b" value="a" id="q1b_a"> a) They left village life behind and spent most of the year following herds of buffalo.</label><br>
+      <label for="q1b_b"><input type="checkbox" name="q1b" value="b" id="q1b_b"> b) Plains people lived in tents called tepees.</label><br>
+      <label for="q1b_c"><input type="checkbox" name="q1b" value="c" id="q1b_c"> c) Warriors sometimes wore warbonnets, or headdresses made with eagle feathers.</label><br>
+      <label for="q1b_d"><input type="checkbox" name="q1b" value="d" id="q1b_d"> d) Over time Plains people lost much of their traditional way of life.</label><br>
+      <label for="q1b_e"><input type="checkbox" name="q1b" value="e" id="q1b_e"> e) They used different parts of the buffalo to make all kinds of items.</label><br>
+    </div>
+
+    <!-- 2a -->
+    <div class="question" data-answer="c" data-type="radio" data-name="q2a">
+      <p><strong>2a. What does the word <u><em>dwelling</em></u> most likely mean as used in the sentence: (RI.4.4)</strong></p>
+      <p style="text-align: center;"><strong><em>“<u>Dwellings</u> in the villages were mostly dome-shaped earth lodges.”</em></p></strong>
+      <label for="q2a_a"><input type="radio" name="q2a" value="a" id="q2a_a"> a) A type of weapon used for hunting.</label><br>
+      <label for="q2a_b"><input type="radio" name="q2a" value="b" id="q2a_b"> b) A tool made from buffalo horns </label><br>
+      <label for="q2a_c"><input type="radio" name="q2a" value="c" id="q2a_c"> c) A structure used as shelter or a place to live</label><br>
+      <label for="q2a_d"><input type="radio" name="q2a" value="d" id="q2a_d"> d) A tradition passed down by Plains families</label><br>
+    </div>
+
+    <!-- 2b -->
+    <div class="question" data-answer="b" data-type="radio" data-name="q2b">
+      <p><strong>2b. Which sentence from the passage best helps the reader understand the meaning of <u><em>dwelling</em></u>?  (RI.4.4)</strong></p>
+      <label for="q2b_a"><input type="radio" name="q2b" value="a" id="q2b_a"> a) Typical village people planted crops in the spring.</label><br>
+      <label for="q2b_b"><input type="radio" name="q2b" value="b" id="q2b_b"> b) These were roofed and walled with earth and entered through a covered passage. </label><br>
+      <label for="q2b_c"><input type="radio" name="q2b" value="c" id="q2b_c"> c) Many Plains people gave up permanent villages after they got horses.</label><br>
+      <label for="q2b_d"><input type="radio" name="q2b" value="d" id="q2b_d"> d) Tepees were made by stretching sewn buffalo skins over wooden poles.</label><br>
+    </div>
+
+    <!-- 3a -->
+    <div class="question" data-answer="c" data-type="radio" data-name="q3a">
+      <p><strong>3a. What is one main idea of paragraphs 2-4? (RI.4.2)</strong></p>
+      <label for="q3a_a"><input type="radio" name="q3a" value="a" id="q3a_a"> a) All Plains Native Americans spoke the same language.</label><br>
+      <label for="q3a_b"><input type="radio" name="q3a" value="b" id="q3a_b"> b) Plains peoples invented a sign language to help them hunt buffalo.</label><br>
+      <label for="q3a_c"><input type="radio" name="q3a" value="c" id="q3a_c"> c) Plains Native Americans came from different nations and used several methods to communicate.</label><br>
+      <label for="q3a_d"><input type="radio" name="q3a" value="d" id="q3a_d"> d) The Comanche were the only Plains people to have an ancient language.</label>
+    </div>
+
+    <!-- 3b -->
+    <div class="question" data-answer="a,d" data-type="checkbox" data-name="q3b">
+      <p><strong>3b. Which <u>two</u> details from the text best support your answer to Part 3a? (RI.4.2)</strong></p>
+      <label for="q3b_a"><input type="checkbox" name="q3b" value="a" id="q3b_a"> a) The Plains Native Americans were not one nation.</label><br>
+      <label for="q3b_b"><input type="checkbox" name="q3b" value="b" id="q3b_b"> b) Some of their languages are similar to languages spoken as far north as Alaska.</label><br>
+      <label for="q3b_c"><input type="checkbox" name="q3b" value="c" id="q3b_c"> c) They spoke the same language called Uto-Aztecan.</label><br>
+      <label for="q3b_d"><input type="checkbox" name="q3b" value="d" id="q3b_d"> d) This allowed people who spoke different languages to communicate with each other.</label><br>
+      <label for="q3b_e"><input type="checkbox" name="q3b" value="e" id="q3b_e"> e) They used sign language to count how many buffalo they hunted.</label><br>
+      </div>
+    
+     <!-- 4 -->
+    <div class="question" data-type="openq4" data-name="q4">
+      <p><strong>4. Based on what you learned about the main idea and key details of the passage, write a new title for the article. Then, explain why you chose that title.  (RI.4.2)</strong></p>
+      <textarea style="font-size: 36px; color: #333333; font-family: 'Tahoma', sans-serif; width: 100%;" id="openq2" rows="4" cols="50"></textarea>
+    </div>
+    
+</div>
+    <hr class="rounded">
+    <p style="text-align: center; font-size: 40px; color: brown;"><b>This is the end of the test.</b></p>
+    <p style="text-align: left; font-size: 28px; color: brown;"><em>Make sure that you:</em></p>
+    <ul>
+      <li style="color: brown;">Check your answers before submitting the test.</li>
+      <li style="color: brown;">Type in your <b>name</b> and <b>last name</b> <u>correctly</u></li>
+      <li style="color: brown;">Enter <u>your</u> <b>teacher</b>'s name.</li>
+    </ul>
+    <p style="font-size: 28px; color: brown;"><em>When you are ready, click 'Submit' and your test will be auto-graded.</em></p>
+
+      <hr class="rounded">
+
+    <label>
+      <p>
+        Name & Last Name (required):
+        <input style="width: 400px; height: 45px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Georgia, serif; font-size: 24px; color: #030303; background-color: #fcfc03;"
+               type="text" id="studentName" name="name" placeholder="Type Your Name Here" required aria-label="Student Name">
+      </p>
+    </label>
+
+    <label>
+      <p>
+        Teacher (required):
+        <select id="teacherName" name="teacher" required aria-label="Teacher">
+          <option value="" disabled selected>Select your teacher</option>
+          <option value="Becerril">Becerril</option>
+          <option value="Cerwin">Cerwin</option>
+          <option value="Diaz">Diaz</option>
+        </select>
+      </p>
+    </label>
+
+    <hr class="rounded">
+    <div style="text-align: center;">
+      <button type="submit" id="submitBtn">Submit</button>
+    </div>
+  </form>
+
+  <div id="result" style="margin-top:20px; font-weight:bold;"></div>
+</div>
+
+<script>
+(() => {
+  const form = document.getElementById("quizForm");
+  const submitBtn = document.getElementById("submitBtn");
+  let isSubmitting = false;
+
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    if (isSubmitting) return; // prevent double-clicks
+
+    // Validate name & teacher first
+    const studentNameEl = document.getElementById("studentName");
+    const teacherNameEl = document.getElementById("teacherName");
+    studentNameEl.classList.remove("unanswered");
+    teacherNameEl.classList.remove("unanswered");
+
+    if (!studentNameEl.value.trim()) {
+      alert("⚠️ Please enter your name.");
+      studentNameEl.classList.add("unanswered");
+      studentNameEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      studentNameEl.focus();
+      return;
+    }
+    if (!teacherNameEl.value) {
+      alert("⚠️ Please select your teacher.");
+      teacherNameEl.classList.add("unanswered");
+      teacherNameEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      teacherNameEl.focus();
+      return;
+    }
+
+    // Clear old highlights
+    document.querySelectorAll(".question").forEach(q => {
+      q.classList.remove("unanswered", "correct", "incorrect");
+    });
+
+    // Pass 1: Validation only
+    let score = 0;
+    let total = 0;
+    let openResponses = [];
+    let allAnswered = true;
+    let firstUnanswered = null;
+
+    document.querySelectorAll(".question").forEach(q => {
+      const type = q.dataset.type;
+      const name = q.dataset.name;
+
+      if (type === "radio") {
+        total++;
+        const chosen = document.querySelector(`input[name="${name}"]:checked`);
+        if (!chosen) {
+          allAnswered = false;
+          q.classList.add("unanswered");
+          if (!firstUnanswered) firstUnanswered = q;
+        }
+      } else if (type === "checkbox") {
+        total++;
+        const selected = Array.from(document.querySelectorAll(`input[name="${name}"]:checked`));
+        if (selected.length !== 2) {
+          allAnswered = false;
+          q.classList.add("unanswered");
+          if (!firstUnanswered) firstUnanswered = q;
+        }
+      } else {
+        const textarea = q.querySelector("textarea");
+        if (textarea && textarea.value.trim() === "") {
+          allAnswered = false;
+          q.classList.add("unanswered");
+          if (!firstUnanswered) firstUnanswered = q;
+        }
+      }
+    });
+
+    if (!allAnswered) {
+      alert("⚠️ Please answer all questions. (Checkbox questions must have exactly TWO choices.)");
+      if (firstUnanswered) {
+        firstUnanswered.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      return;
+    }
+
+    // Pass 2: Grade & collect
+    let detailedAnswers = {};
+    document.querySelectorAll(".question").forEach(q => {
+      const type = q.dataset.type;
+      const correct = q.dataset.answer;
+      const name = q.dataset.name;
+      let studentAnswer = "";
+
+      if (type === "radio") {
+        const chosen = document.querySelector(`input[name="${name}"]:checked`);
+        studentAnswer = chosen.value;
+        if (chosen.value === correct) {
+          score++;
+          q.classList.add("correct");
+        } else {
+          q.classList.add("incorrect");
+        }
+      } else if (type === "checkbox") {
+        const selected = Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(cb => cb.value);
+        studentAnswer = selected.join(",");
+        const correctAnswers = (correct || "").split(",");
+        const isCorrect = selected.length === correctAnswers.length && correctAnswers.every(ans => selected.includes(ans));
+        if (isCorrect) {
+          score++;
+          q.classList.add("correct");
+        } else {
+          q.classList.add("incorrect");
+        }
+      } else {
+        const textarea = q.querySelector("textarea");
+        if (textarea) {
+          studentAnswer = textarea.value.trim();
+          openResponses.push({ question: q.querySelector("p").innerText, answer: studentAnswer });
+          q.classList.add("correct"); // recorded
+        }
+      }
+
+      detailedAnswers[name] = studentAnswer;
+    });
+
+    const percent = Math.round((score / total) * 100);
+    const studentName = studentNameEl.value.trim();
+    const teacherName = teacherNameEl.value;
+
+    // Display report
+    let openHTML = "";
+    if (openResponses.length > 0) {
+      openHTML = "<h3>Open-Ended Responses</h3><ul>";
+      openResponses.forEach(r => {
+        openHTML += `<li><strong>${r.question}</strong><br>Response: ${r.answer}</li>`;
+      });
+      openHTML += "</ul>";
+    }
+
+    document.getElementById("result").innerHTML = `
+      <h3>Student Report Card</h3>
+      <p><strong>Student:</strong> ${studentName}</p>
+      <p><strong>Teacher:</strong> ${teacherName}</p>
+      <p><strong>Score:</strong> ${score} out of ${total} correct (${percent}%).</p>
+      <p><em>Note:</em> Only multiple-choice and checkbox questions are auto-graded.</p>
+      ${openHTML}
+    `;
+
+    // Prepare payload for Google Sheets
+    const payload = { studentName, teacherName, score, percent, ...detailedAnswers };
+    const formBody = Object.keys(payload)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(payload[key]))
+      .join("&");
+
+    // Lock UI & send
+    isSubmitting = true;
+    const originalBtnText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting...";
+
+    try {
+      const res = await fetch("https://script.google.com/macros/s/AKfycbzcj8Fz9N62AoeN1YvX-wIPsiTsde3UFFk2TZjo2_6GKzKNB_zJ9reW5THI2wAfkndH/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formBody
+      });
+      const data = await res.text();
+      console.log("Server response:", data);
+      submitBtn.textContent = "Submitted ✓"; // keep disabled to prevent resubmission
+      alert("Quiz submitted successfully!");
+    } catch (err) {
+      console.error("Error:", err);
+      alert("There was an error submitting your quiz. Please try again.");
+      isSubmitting = false;
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalBtnText;
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
